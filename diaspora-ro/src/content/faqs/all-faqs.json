@@ -1,0 +1,364 @@
+{
+  "faqs": [
+    {
+      "id": "pension-cumulation",
+      "question": "Cum se calculează pensia dacă am muncit în mai multe țări UE?",
+      "answer": "Când te pensionezi, fiecare țară UE în care ai lucrat îți va calcula pensia proporțional cu anii contribuiți acolo. Vei primi mai multe pensii mici, nu una mare. Depui cererea în țara unde locuiești, iar autoritățile contactează celelalte țări automat. Toate perioadele lucrate se cumulează pentru a stabili dacă ai dreptul la pensie.",
+      "topics": ["pension"],
+      "countries": ["DE", "ES", "IT", "FR", "UK", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker", "returning"]
+    },
+    {
+      "id": "ehic-romania-use",
+      "question": "Pot folosi cardul EHIC când vizitez România?",
+      "answer": "Da! Dacă ești asigurat în altă țară UE, poți folosi cardul EHIC pentru tratament medical necesar când vizitezi România. Acoperă tratamentul de urgență și tratamentul necesar în spitale și cabinete publice. Trebuie să mergi la instituții din sistemul public de sănătate.",
+      "topics": ["healthcare"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "remote-work-taxes",
+      "question": "Unde plătesc taxe dacă lucrez remote pentru o firmă din România dar locuiesc în Germania?",
+      "answer": "Situația muncii remote e complexă. De regulă, ești rezident fiscal în țara unde locuiești majoritatea timpului (Germania în cazul tău). Dar firma românească tot trebuie să rețină contribuții. Cel mai probabil vei avea obligații în ambele țări și vei folosi tratatul de evitare a dublei impuneri. Recomandăm consultarea unui specialist în fiscalitate internațională.",
+      "topics": ["taxes"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["remote_worker"]
+    },
+    {
+      "id": "a1-form-who-needs",
+      "question": "Cine are nevoie de formularul A1?",
+      "answer": "Formularul A1 este necesar pentru lucrătorii detașați - când ești trimis de o firmă românească să lucrezi temporar în altă țară UE. De asemenea, e necesar pentru cei care lucrează în mai multe țări simultan. NU ai nevoie de A1 dacă ai contract local cu o firmă din țara unde lucrezi.",
+      "topics": ["social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["posted_worker", "remote_worker"]
+    },
+    {
+      "id": "health-insurance-family",
+      "question": "Familia mea e acoperită de asigurarea mea de sănătate?",
+      "answer": "Depinde de țara unde ești asigurat. În Germania, soțul/soția și copiii pot fi acoperiți gratuit dacă nu lucrează sau câștigă sub pragul minim. În alte țări, regulile pot diferi. Fiecare membru al familiei trebuie propriul card EHIC pentru călătorii în UE.",
+      "topics": ["healthcare"],
+      "countries": ["DE"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "unemployment-benefits-return",
+      "question": "Pot primi șomaj în România dacă mă întorc după ce am lucrat în Germania?",
+      "answer": "Da! Când te întorci, poți transfera drepturile tale de șomaj cu formularul U1 (fost E301). Trebuie să ceri acest formular de la agenția pentru ocuparea forței de muncă din Germania ÎNAINTE să pleci. Cu el, te prezinți la AJOFM în România în termen de 3 luni și vei primi șomaj conform regulilor românești.",
+      "topics": ["social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["returning"]
+    },
+    {
+      "id": "tax-resident-determination",
+      "question": "Cum știu în ce țară sunt rezident fiscal?",
+      "answer": "De regulă, ești rezident fiscal în țara unde locuiești mai mult de 183 zile pe an (6 luni). Dacă locuiești și lucrezi în Germania tot anul, ești rezident fiscal german. Dacă situația e mai complicată (locuiești în România, lucrezi în Germania), ar trebui să consulți un specialist fiscal.",
+      "topics": ["taxes"],
+      "countries": ["DE", "ES", "IT", "FR", "UK", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "double-taxation",
+      "question": "Plătesc taxe în două țări?",
+      "answer": "România are tratate de evitare a dublei impuneri cu toate țările UE. Asta înseamnă că NU plătești impozit pe același venit în ambele țări. De obicei, plătești în țara unde lucrezi efectiv, și declari în țara de reședință. Tratatul stabilește exact cum se împarte dreptul de impozitare.",
+      "topics": ["taxes"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["local_employee", "remote_worker"]
+    },
+    {
+      "id": "posted-worker-duration",
+      "question": "Cât timp pot fi detașat în altă țară?",
+      "answer": "Detașarea standard poate fi până la 24 luni. După această perioadă, de obicei trebuie să treci la sistemul de asigurări sociale din țara gazdă. Pot exista extensii în cazuri speciale, dar trebuie aprobate de autoritățile din ambele țări.",
+      "topics": ["social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["posted_worker"]
+    },
+    {
+      "id": "pension-years-count",
+      "question": "Își pierd valoarea anii lucrați în străinătate când mă pensionez?",
+      "answer": "Absolut NU! Toți anii lucrați în țări UE se cumulează și își păstrează valoarea. Fiecare țară îți va plăti pensie proporțional cu anii contribuiți acolo. Perioadele se combină pentru a stabili eligibilitatea, dar fiecare țară plătește pentru propria perioadă.",
+      "topics": ["pension"],
+      "countries": ["DE", "ES", "IT", "FR", "UK", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker", "returning"]
+    },
+    {
+      "id": "change-situation",
+      "question": "Ce se întâmplă dacă îmi schimb situația - de exemplu din detașat devin angajat local?",
+      "answer": "Când situația ta se schimbă, se schimbă și obligațiile. Dacă treci de la detașat la angajat local, vei trece de la sistemul românesc la cel local. Angajatorul nou trebuie să te înregistreze în sistemul local de asigurări. Perioadele anterioare rămân valabile și se vor cumula.",
+      "topics": ["social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["posted_worker", "local_employee"]
+    },
+    {
+      "id": "documents-validity",
+      "question": "Cât timp sunt valabile documentele (A1, EHIC, etc.)?",
+      "answer": "Depinde de document: EHIC e valid 1-5 ani (depinde de țara emitentă), formularul A1 e valabil doar pentru perioada detașării specificată (max 24 luni de obicei), formularul U1 e valabil 3 luni de la emitere pentru transferul șomajului. Verifică întotdeauna data de expirare pe fiecare document.",
+      "topics": ["social-security", "healthcare"],
+      "countries": ["DE", "ES", "IT", "FR", "UK", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker", "returning"]
+    },
+    {
+      "id": "emergency-healthcare-romania",
+      "question": "Ce fac dacă am o urgență medicală când vizitez România?",
+      "answer": "Suni la 112 sau mergi la cea mai apropiată Unitate de Primiri Urgențe (UPU). Prezinți cardul EHIC. Vei primi tratament de urgență imediat. Costurile vor fi acoperite prin cardul EHIC conform sistemului românesc. Păstrează toate documentele medicale pentru casa ta de asigurări.",
+      "topics": ["healthcare"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "income-romania-while-abroad",
+      "question": "Am venituri din România (chirie, dividende) - trebuie să le declar?",
+      "answer": "Da! Chiar dacă ești rezident fiscal în altă țară, veniturile din surse românești trebuie declarate. De obicei: plătești impozit în România pentru venituri din surse românești (chirii, dividende), apoi le declari și în țara de reședință. Tratatul de evitare a dublei impuneri previne plata de două ori.",
+      "topics": ["taxes"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "s1-vs-ehic",
+      "question": "Care e diferența între formularul S1 și cardul EHIC?",
+      "answer": "EHIC e pentru călătorii TEMPORARE și acoperă urgențe și tratament necesar. Formularul S1 e pentru cei care locuiesc într-o țară dar sunt asigurați în alta (ex: pensionari, lucrători frontalieri). S1 îți permite să te înregistrezi în sistemul local deși plătești în alta țară. EHIC e pentru vizite scurte, S1 pentru reședință.",
+      "topics": ["healthcare"],
+      "countries": ["DE", "ES", "IT", "FR", "UK", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker", "returning"]
+    },
+    {
+      "id": "spain-nie-how-long",
+      "question": "Cât durează să obțin NIE în Spania?",
+      "answer": "NIE-ul (Número de Identidad de Extranjero) poate dura 2-6 săptămâni în funcție de oraș și perioadă. În orașele mari (Madrid, Barcelona) e mai aglomerat. Poți obține NIE și din România la consulatul spaniol înainte de plecare, ceea ce e mai rapid. Ai nevoie de NIE pentru contract de muncă, cont bancar și orice activitate oficială în Spania.",
+      "topics": ["social-security"],
+      "countries": ["ES"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "italy-codice-fiscale",
+      "question": "Ce e codice fiscale în Italia și cum îl obțin?",
+      "answer": "Codice fiscale e echivalentul CNP-ului în Italia - un cod de 16 caractere alfanumerice necesar pentru ORICE activitate (job, cont bancar, contract chirie, servicii medicale). Îl obții gratuit de la Agenzia delle Entrate în 10-20 minute cu pașaportul. Poți să-l obții și online sau la consulatul italian din România înainte de plecare.",
+      "topics": ["social-security", "taxes"],
+      "countries": ["IT"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "france-carte-vitale",
+      "question": "Cât durează să primesc Carte Vitale în Franța?",
+      "answer": "Carte Vitale (cardul verde cu chip pentru sănătate) durează 2-6 luni să ajungă după înregistrare. Între timp, primești o attestation de droits (adeverință temporară) pe hârtie pe care o folosești la medic. Trebuie să avansezi banii și ceri rambursare de la CPAM (70% din cost). După ce primești Carte Vitale, procesul e automat.",
+      "topics": ["healthcare"],
+      "countries": ["FR"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "france-mutuelle-mandatory",
+      "question": "E obligatorie mutuelle (asigurarea complementară) în Franța?",
+      "answer": "Da, pentru angajați cu contract! Din 2016, angajatorii au obligația să ofere o mutuelle colectivă care acoperă minim 50% din cost (restul plătit de angajat, ~20-50€/lună). Mutuelle acoperă cei 30% neacoperiți de Sécurité Sociale plus servicii extra (ochelari, dentist). Pentru detașați sau remote workers, nu e obligatorie dar foarte recomandată.",
+      "topics": ["healthcare"],
+      "countries": ["FR"],
+      "situations": ["local_employee", "remote_worker"]
+    },
+    {
+      "id": "italy-ral-vs-netto",
+      "question": "Ce înseamnă RAL în Italia și cât rămâne net?",
+      "answer": "RAL (Retribuzione Annua Lorda) = salariul brut anual în Italia. Din RAL se scad contribuții sociale (~9%) și impozit IRPEF (23-43%). Pentru RAL de 30,000€: rămân ~21,000€ net/an (~1,550€/lună × 13 luni, pentru că Italia plătește 13-14 salarii/an cu tredicesima). Calculul exact depinde de detrazioni (deduceri pentru dependenți, etc.).",
+      "topics": ["taxes"],
+      "countries": ["IT"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "spain-tax-brackets-2024",
+      "question": "Care sunt tranșele de impozit în Spania?",
+      "answer": "Impozitul spaniol (IRPF) e progresiv: 19% (0-12,450€), 24% (12,450-20,200€), 30% (20,200-35,200€), 37% (35,200-60,000€), 45% (60,000-300,000€), 47% (peste 300,000€). PLUS regiunile adaugă taxe proprii (1-3%). Pentru un salariu de 30,000€, impozitul efectiv e ~24% (~7,200€).",
+      "topics": ["taxes"],
+      "countries": ["ES"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "france-prelevement-source",
+      "question": "Ce e prélèvement à la source în Franța?",
+      "answer": "Din 2019, Franța reține impozitul DIRECT din salariu în fiecare lună (ca în România), nu mai plătești anul următor. Angajatorul calculează taux de prélèvement (cota de reținere) pe baza declarației tale anterioare. Prima dată, se folosește un taux neutru. Tot trebuie să declari anual (aprilie-iunie) pentru ajustări și posibile rambursări.",
+      "topics": ["taxes"],
+      "countries": ["FR"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "freelance-spain-autonomo",
+      "question": "Cât costă să fii autónomo (freelancer) în Spania?",
+      "answer": "Ca autónomo în Spania plătești cuota (cotizație) lunară la Seguridad Social: primele 12 luni doar 80€/lună (tarifa plana), apoi crește treptat până la 294-500€/lună după 3 ani. PLUS impozit pe profit (19-47% progresiv). Avantaj: cuota fixă acoperă pensie + sănătate indiferent de venit. Pentru venituri mici (<20,000€/an) poate fi costisitor.",
+      "topics": ["social-security", "taxes"],
+      "countries": ["ES"],
+      "situations": ["remote_worker"]
+    },
+    {
+      "id": "italy-partita-iva-regime",
+      "question": "Cum funcționează partita IVA în Italia pentru freelanceri?",
+      "answer": "Partita IVA = număr de TVA pentru freelanceri în Italia. Regime forfettario (plat tax) e cel mai avantajos: impozit fix 5% (primii 5 ani) sau 15% pe venit până la 85,000€/an, fără TVA. Contribuții INPS Gestione Separata ~26% din venit. Total ~31-41% taxare, mai puțin decât ca angajat. Trebuie un commercialista (contabil) - cost 500-1,500€/an.",
+      "topics": ["social-security", "taxes"],
+      "countries": ["IT"],
+      "situations": ["remote_worker"]
+    },
+    {
+      "id": "france-micro-entrepreneur",
+      "question": "Ce e micro-entrepreneur în Franța și cât plătesc?",
+      "answer": "Micro-entrepreneur (fostul auto-entrepreneur) e regimul simplificat de freelancing în Franța. Plătești cotizații pe cifra de afaceri (turnover), nu pe profit: 22% pentru servicii, 12.8% pentru comerț. Impozit separat (0-45% progresiv) SAU poți alege versement libératoire (2.2% din CA pentru servicii). Procedură simplă, declarație trimestrială, ideal pentru venituri <77,700€/an.",
+      "topics": ["social-security", "taxes"],
+      "countries": ["FR"],
+      "situations": ["remote_worker"]
+    },
+    {
+      "id": "unemployment-best-country",
+      "question": "În ce țară e cel mai avantajos șomajul - Germania, Spania, Italia sau Franța?",
+      "answer": "Franța are cel mai generos șomaj: 57-75% din salariu pentru 24-36 luni. Germania: 60-67% pentru 12-24 luni. Spania: 70% (6 luni) apoi 50% până la 24 luni. Italia: ~75% pentru 12-24 luni dar cu praguri mai mici. Toate permit transfer în România cu U1. Important: ceri U1 ÎNAINTE de plecare și înregistrează-te la AJOFM în 7 zile.",
+      "topics": ["social-security"],
+      "countries": ["DE", "ES", "IT", "FR"],
+      "situations": ["returning"]
+    },
+    {
+      "id": "dental-care-abroad",
+      "question": "Unde e mai ieftin dentistul - în țara unde lucrez sau în România?",
+      "answer": "România e MULT mai ieftin pentru stomatologie! Germania: implant 1,500-2,500€. Spania: 800-1,500€. Italia: 1,000-2,000€. Franța: 1,200-2,000€. România: 400-800€ pentru același implant, calitate comparabilă. EHIC NU acoperă stomatologie planificată. Recomandare: planifică tratamente dentare când vizitezi România. Mulți români fac așa.",
+      "topics": ["healthcare"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "pension-minimum-years",
+      "question": "Câți ani trebuie să lucrez pentru a primi pensie?",
+      "answer": "Fiecare țară are stagiu minim: Germania 5 ani, Spania 15 ani, Italia 20 ani, Franța 10 ani (43 trimestres), România 15 ani. DAR perioadele din toate țările UE se CUMULEAZĂ pentru eligibilitate! Exemplu: 10 ani DE + 8 ani ES = 18 ani total → primești pensie din ambele (fiecare plătește pentru anii proprii). Nu e nevoie să îndeplinești minimul în fiecare țară separat.",
+      "topics": ["pension"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "social-contributions-comparison",
+      "question": "În ce țară sunt cele mai mari contribuții sociale?",
+      "answer": "Contribuții sociale totale (angajat + angajator): Franța ~67% (cele mai mari din UE!), România ~42.5%, Italia ~33%, Spania ~35%, Germania ~40%. DAR beneficiile diferă - Franța oferă pensie excelentă, șomaj generos, sănătate premium. România are contribuții mai mici dar și prestații sociale mai mici. Important: ca angajat vezi doar partea ta (9-22%), angajatorul plătește restul.",
+      "topics": ["social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "move-between-eu-countries",
+      "question": "Pot să mă mut dintr-o țară UE în alta fără să pierd drepturile?",
+      "answer": "Da! Când te muți (ex: din Germania în Spania), perioadele anterioare NU se pierd. Procedură: 1) Ceri U1 pentru șomaj (dacă aplicabil), 2) Ceri dovezi de contribuție (Bescheinigung, certificado, etc.) pentru dosarul de pensie, 3) Te înregistrezi în noua țară, 4) Începi să contribui acolo. La pensionare, TOATE perioadele se cumulează. Primești pensii separate din fiecare țară.",
+      "topics": ["social-security", "pension"],
+      "countries": ["DE", "ES", "IT", "FR", "UK"],
+      "situations": ["local_employee", "returning"]
+    },
+    {
+      "id": "which-country-best-salary",
+      "question": "În ce țară rămân cei mai mulți bani în mână din salariu?",
+      "answer": "Pentru același salariu brut, ordinea (de la mai mult la mai puțin net): România (~58% net din brut), Germania (~55-60%), Spania (~65% pentru salarii mici, ~55% pentru mari), Italia (~60-70% depinde de RAL și detrazioni), Franța (~70-75% cu prélèvement). DAR atenție: costul vieții diferă! Un salariu net de 1,500€ în România = putere de cumpărare mai mare decât 2,000€ în Franța.",
+      "topics": ["taxes"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "family-reunification",
+      "question": "Pot aduce familia (soț/soție, copii) în țara UE unde lucrez?",
+      "answer": "Da, drept automat ca cetățean UE! Procedură: 1) Dovedești că ai job stabil și locuință, 2) Familia se înregistrează la primărie (Comune, Ayuntamiento, etc.), 3) Obțin asigurare de sănătate (adesea gratuită ca dependenți), 4) Copiii se înscriu la școală. NU trebuie vize sau permise speciale pentru cetățeni UE. Familie = soț/soție, copii sub 21 ani, părinți dependenți.",
+      "topics": ["social-security", "healthcare"],
+      "countries": ["DE", "ES", "IT", "FR"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "return-romania-healthcare",
+      "question": "Dacă mă întorc în România, se reactivează asigurarea de sănătate automat?",
+      "answer": "Da, dacă ai job în România - angajatorul te înregistrează automat la CNAS. Dacă te întorci fără job, te înregistrezi la AJOFM (agenția de ocupare) și primești asigurare gratuită 9 luni. SAU dacă transferi șomaj cu U1 din străinătate, ești automat asigurat. Cardul de sănătate românesc îl primești în 2-4 săptămâni. Între timp, folosești adeverința de la CNAS.",
+      "topics": ["healthcare"],
+      "countries": ["RO"],
+      "situations": ["returning"]
+    },
+    {
+      "id": "private-pension-abroad",
+      "question": "Merită să cotizez la o pensie privată în țara unde lucrez?",
+      "answer": "Depinde de țară și vârstă. Germania: Riester-Rente are subvenții statale, merită. Italia: fondi pensione au beneficii fiscale mari (deducere până la 5,164€/an). Spania: planuri de pensiones - deducere până la 1,500€/an. Franța: PER (Plan Épargne Retraite) - deducere totală din impozit. Dacă plănuiești să rămâi 10+ ani, MERITĂ - complementează pensia publică. Dacă pleci mai devreme, poți transfera sau retrage cu penalizare.",
+      "topics": ["pension"],
+      "countries": ["DE", "ES", "IT", "FR"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "paid-leave-comparison",
+      "question": "Câte zile de concediu am în fiecare țară UE?",
+      "answer": "Minim legal UE: 20 zile/an (4 săptămâni). În practică: România 20-25 zile, Germania 20-30 zile (depinde de contract), Spania 22-30 zile, Italia 22-28 zile (ROL + permessi), Franța 25-30 zile (5 săptămâni + RTT în multe companii). PLUS sărbători legale: Germania 9-13 zile, Spania 14 zile, Italia 12 zile, Franța 11 zile, România 15 zile. Total zile libere: Spania și Franța sunt cele mai generoase.",
+      "topics": ["social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "maternity-leave-comparison",
+      "question": "Cum e concediul de maternitate în țările UE vs România?",
+      "answer": "România: 126 zile (18 săptămâni) cu 85% din salariu. Germania: 14 săptămâni (6 înainte + 8 după naștere) cu 100% salariu, apoi Elterngeld 65-67% până la 14 luni. Spania: 16 săptămâni cu 100% salariu. Italia: 5 luni (2+3) cu 80% salariu + congedo parentale opțional 30% până copilul are 12 ani. Franța: 16 săptămâni cu ~90% salariu + congé parental opțional până la 3 ani. Toate țările oferă protecție contra concedierii.",
+      "topics": ["social-security", "healthcare"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "sick-leave-pay",
+      "question": "Primesc salariu dacă sunt în concediu medical în străinătate?",
+      "answer": "Da! Germania: primele 6 săptămâni 100% de la angajator, apoi 70% de la Krankenkasse până la 78 săptămâni. Spania: 60-75% din salariu din ziua 4 (primele 3 zile fără plată în unele cazuri). Italia: 50% zile 1-20, apoi 66% de la INPS, angajatorul completează adesea la 100%. Franța: 50% de la Sécurité Sociale din ziua 4 + completare de la angajator/mutuelle. România: 75% din ziua 3. Documente medicale sunt recunoscute între țările UE.",
+      "topics": ["social-security", "healthcare"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee", "posted_worker"]
+    },
+    {
+      "id": "multi-country-income-taxes",
+      "question": "Lucrez în Germania dar am și venituri din chirie în România - unde plătesc taxe?",
+      "answer": "Trebuie să declari în AMBELE țări! În Germania: declari TOATE veniturile mondiale (inclusiv chiria din RO) ca rezident fiscal. În România: plătești impozit de 10% pe venitul din chirie. Germania îți va da credit fiscal pentru impozitul plătit în RO (evitarea dublei impuneri). Exemplu: chirie 500€/lună în RO → plătești 50€/lună în RO, declari în DE dar nu mai plătești pe ea acolo. Păstrează dovezile plății din România pentru declarația germană!",
+      "topics": ["taxes"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee", "posted_worker", "remote_worker"]
+    },
+    {
+      "id": "freelance-romania-employee-germany",
+      "question": "Sunt angajat în Germania - pot avea și PFA/SRL în România în paralel?",
+      "answer": "Da, legal POȚI! DAR e complicat fiscal. Germania taxează venitul GLOBAL (inclusiv din PFA/SRL românesc). Trebuie: 1) Să declari veniturile românești în Germania, 2) Să plătești contribuții în România pentru activitatea de acolo, 3) Tratatul de evitare previne dubla impunere dar trebuie să îl aplici corect. Recomandare: consultă un specialist fiscal cross-border! Riscuri: erori fiscale, probleme cu asigurările sociale (unde contribui?), posibile amenzi în ambele țări.",
+      "topics": ["taxes", "social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee"]
+    },
+    {
+      "id": "work-two-countries-simultaneously",
+      "question": "Lucrez 3 zile/săptămână în Germania și 2 zile în România - ce se întâmplă cu taxele și asigurările?",
+      "answer": "Situație complexă care necesită formularul A1 special! Determinarea unde contribui depinde de: 1) Unde lucrezi MAI MULT (25%+ din timpul de lucru), 2) Unde e angajatorul principal, 3) Unde locuiești efectiv. De regulă: contribui la asigurări sociale în țara unde lucrezi majoritatea timpului (Germania în cazul tău). Pentru taxe: ești rezident fiscal unde locuiești 183+ zile. Fiecare țară taxează veniturile din surse locale, dar tratatul previne dubla impunere. ESENȚIAL: cere A1 de la instituția competentă!",
+      "topics": ["taxes", "social-security"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["remote_worker", "posted_worker"]
+    },
+    {
+      "id": "pension-contributions-two-countries",
+      "question": "Dacă plătesc contribuții de pensie simultan în România și Germania, primesc pensie dublă?",
+      "answer": "Nu e 'pensie dublă' ci pensii separate proportionale! Fiecare țară calculează pensia pentru anii contribuiți acolo. Exemplu: 20 ani în DE + 10 ani paralel în RO + 10 ani doar RO = primești pensie din DE pentru 20 ani + pensie din RO pentru 20 ani (10 paralel + 10 solo). Perioadele paralele se numără în AMBELE țări dacă ai contribuit efectiv în ambele. La 67 ani (vârsta de pensionare), depui cerere în țara de reședință și ei coordonează cu cealaltă țară automat.",
+      "topics": ["pension"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee", "remote_worker"]
+    },
+    {
+      "id": "crypto-trading-abroad",
+      "question": "Tranzacționez crypto - unde plătesc taxe dacă locuiesc în Germania dar exchange-ul e în România?",
+      "answer": "Locația exchange-ului NU contează - contează unde EȘTI rezident fiscal! Dacă ești rezident în Germania (183+ zile/an), declari câștigurile crypto în Germania. Germania: profit din crypto = venit personal, scutit de taxe dacă ai ținut crypto 1+ an, altfel impozit progresiv (0-45%). România: 10% pe profit din crypto. Dacă ai câștiguri din crypto și ești rezident german, declari în Germania. Păstrează TOATE tranzacțiile documentate - autoritățile fiscale pot cere documente pentru ultimii 5-10 ani!",
+      "topics": ["taxes"],
+      "countries": ["DE", "ES", "IT", "FR", "RO"],
+      "situations": ["local_employee", "remote_worker"]
+    },
+    {
+      "id": "dividends-romanian-company-abroad",
+      "question": "Am SRL în România și locuiesc în Spania - cum plătesc taxe pe dividende?",
+      "answer": "Plătești în AMBELE țări dar fără dublă impunere! Procesul: 1) România: 8% impozit pe dividende reținut la sursă (SRL-ul plătește automat când distribuie dividende), 2) Spania: declari dividendele în declarația anuală, impozit 19-26% pe dividende (ahorro). 3) Spania îți va da credit fiscal pentru cei 8% plătiți în RO, deci plătești doar diferența (11-18% în plus în ES). Total taxare: 19-26%. Important: păstrează dovada plății celor 8% din România pentru declarația spaniolă!",
+      "topics": ["taxes"],
+      "countries": ["ES", "IT", "FR", "DE", "RO"],
+      "situations": ["local_employee", "remote_worker"]
+    },
+    {
+      "id": "remote-romania-live-italy-healthcare",
+      "question": "Lucrez remote pentru firmă românească dar locuiesc în Italia - unde am asigurare de sănătate?",
+      "answer": "Depinde de contract și contribuții! Scenarii: 1) Dacă ai CONTRACT ROMÂNESC și plătești CASS în RO: ești asigurat în RO, trebuie formular S1 pentru acces la sănătate italiană. 2) Dacă firma te înregistrează ca REZIDENT ITALIAN: plătești contribuții în IT, asigurat în IT. 3) Dacă ești PFA/SRL românesc: contribui în RO, S1 pentru IT. ATENȚIE: dacă locuiești efectiv în IT 183+ zile, legal TREBUIE să fii înregistrat ca rezident italian și să contribui acolo! Riscuri: amenzi, lipsă acces la sănătate.",
+      "topics": ["healthcare", "social-security"],
+      "countries": ["IT", "ES", "FR", "DE", "RO"],
+      "situations": ["remote_worker"]
+    },
+    {
+      "id": "split-year-residency",
+      "question": "M-am mutat în Franța în iulie - sunt rezident fiscal în ambele țări în același an?",
+      "answer": "Da, ai 'split year' - rezidenț fiscal în ambele țări în același an! Procedură: 1) România: declari veniturile ianuarie-iulie ca rezident RO. 2) Franța: declari veniturile august-decembrie ca rezident FR. 3) Declari în ambele țări dar fiecare taxează doar perioada ta acolo. Convenția de evitare asigură că nu plătești dublu. La declarație: specifici data mutării, perioada de rezidență în fiecare țară. Păstrează dovezi: contract de muncă cu data, contract chirie FR, dovada înregistrării la primărie (attestation de résidence).",
+      "topics": ["taxes"],
+      "countries": ["FR", "DE", "ES", "IT", "RO"],
+      "situations": ["local_employee", "remote_worker"]
+    }
+  ]
+}
