@@ -30,7 +30,11 @@
       "Bash(SKIP_ENV_VALIDATION=1 npx next build:*)",
       "Bash(move /Y workerindex.js publicpush-handler.js)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)"
     ]
   }
 }
