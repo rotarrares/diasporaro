@@ -25,6 +25,9 @@ export default function QuizContainer() {
 
   // Scroll to top when step changes
   useEffect(() => {
+    // Scroll window to top for better mobile experience
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Also scroll the main container
     if (mainRef.current) {
       mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -35,10 +38,6 @@ export default function QuizContainer() {
     value: QuizAnswers[K]
   ) => {
     setAnswers(prev => ({ ...prev, [key]: value }));
-    // Scroll to top on mobile when an option is selected
-    if (mainRef.current) {
-      mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-    }
   };
 
   const canProceed = () => {
