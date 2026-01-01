@@ -35,6 +35,10 @@ export default function QuizContainer() {
     value: QuizAnswers[K]
   ) => {
     setAnswers(prev => ({ ...prev, [key]: value }));
+    // Scroll to top on mobile when an option is selected
+    if (mainRef.current) {
+      mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const canProceed = () => {

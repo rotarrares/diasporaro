@@ -11,7 +11,6 @@ import TopicCard from '@/components/dashboard/TopicCard';
 import DocumentsList from '@/components/dashboard/DocumentsList';
 import NextSteps from '@/components/dashboard/NextSteps';
 import TaxDeadlines from '@/components/dashboard/TaxDeadlines';
-import OfficialResources from '@/components/dashboard/OfficialResources';
 import { AlertCircle } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -37,31 +36,25 @@ export default function DashboardPage() {
   const dashboardCards = getDashboardCards(profile);
   const { applicableRules } = profile;
 
-  // Get official resources based on user's country
-  const socialSecurityResources = getResourcesByCountryAndTopic(
-    profile.destinationCountry,
-    'social-security'
-  );
-  const healthcareResources = getResourcesByCountryAndTopic(
-    profile.destinationCountry,
-    'healthcare'
-  );
-  const taxResources = getResourcesByCountryAndTopic(
-    profile.destinationCountry,
-    'taxes'
-  );
-  const pensionResources = getResourcesByCountryAndTopic(
-    profile.destinationCountry,
-    'pension'
-  );
-
-  // Combine all resources for a general section
-  const allResources = [
-    ...socialSecurityResources,
-    ...healthcareResources,
-    ...taxResources,
-    ...pensionResources,
-  ];
+  // Get official resources based on user's country - organized by topic
+  const resourcesByTopic = {
+    'social-security': getResourcesByCountryAndTopic(
+      profile.destinationCountry,
+      'social-security'
+    ),
+    healthcare: getResourcesByCountryAndTopic(
+      profile.destinationCountry,
+      'healthcare'
+    ),
+    taxes: getResourcesByCountryAndTopic(
+      profile.destinationCountry,
+      'taxes'
+    ),
+    pension: getResourcesByCountryAndTopic(
+      profile.destinationCountry,
+      'pension'
+    ),
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -95,17 +88,13 @@ export default function DashboardPage() {
           <TaxDeadlines deadlines={applicableRules.taxes.deadlines} />
         )}
 
-        {/* Official Resources - NEW! */}
-        {allResources.length > 0 && (
-          <OfficialResources
-            resources={allResources}
-            title="🔗 Resurse Oficiale pentru Situația Ta"
-          />
-        )}
-
-        {/* Topic Cards */}
+        {/* Topic Cards with Official Resources */}
         {dashboardCards.map((card) => (
-          <TopicCard key={card.topic} card={card} />
+          <TopicCard
+            key={card.topic}
+            card={card}
+            resources={resourcesByTopic[card.topic]}
+          />
         ))}
 
         {/* Required Documents */}
