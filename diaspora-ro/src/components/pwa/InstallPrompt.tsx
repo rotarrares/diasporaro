@@ -15,35 +15,75 @@ export function InstallPrompt() {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
+    console.log('[InstallPrompt] Component mounted');
+
     // Check if already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) return;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    console.log('[InstallPrompt] Is standalone:', isStandalone);
+    if (isStandalone) return;
 
     // Check if dismissed recently
     const dismissed = localStorage.getItem('pwa-install-dismissed');
     if (dismissed) {
       const daysSince = (Date.now() - parseInt(dismissed)) / (1000 * 60 * 60 * 24);
+      console.log('[InstallPrompt] Days since dismissed:', daysSince);
       if (daysSince < 30) return;
     }
 
     const handleBeforeInstall = (e: Event) => {
+      console.log('[InstallPrompt] beforeinstallprompt event fired');
       e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      const promptEvent = e as BeforeInstallPromptEvent;
+      setDeferredPrompt(promptEvent);
 
-      // Show after onboarding
-      const profile = localStorage.getItem('diasporaro-profile');
-      if (profile) {
-        setTimeout(() => setShowPrompt(true), 3000);
+      // Check for profile periodically (in case user completes onboarding after this event)
+      const checkProfile = () => {
+        const profile = localStorage.getItem('diasporaro-profile');
+        console.log('[InstallPrompt] Checking profile:', !!profile);
+
+        if (profile) {
+          console.log('[InstallPrompt] Profile found, showing prompt in 3s');
+          setTimeout(() => {
+            console.log('[InstallPrompt] Setting showPrompt to true');
+            setShowPrompt(true);
+          }, 3000);
+          return true;
+        }
+        return false;
+      };
+
+      // Check immediately and then every 5 seconds for up to 2 minutes
+      if (!checkProfile()) {
+        const interval = setInterval(() => {
+          if (checkProfile()) {
+            clearInterval(interval);
+          }
+        }, 5000);
+
+        setTimeout(() => clearInterval(interval), 120000);
       }
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+
+    // Also check if the event already fired (though unlikely)
+    console.log('[InstallPrompt] Event listener added');
+
+    return () => {
+      console.log('[InstallPrompt] Component unmounting');
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+    };
   }, []);
 
   const handleInstall = async () => {
-    if (!deferredPrompt) return;
+    console.log('[InstallPrompt] Install clicked');
+    if (!deferredPrompt) {
+      console.log('[InstallPrompt] No deferred prompt available');
+      return;
+    }
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
+    console.log('[InstallPrompt] User choice:', outcome);
     if (outcome === 'dismissed') {
       localStorage.setItem('pwa-install-dismissed', Date.now().toString());
     }
@@ -52,9 +92,12 @@ export function InstallPrompt() {
   };
 
   const handleDismiss = () => {
+    console.log('[InstallPrompt] Dismissed');
     localStorage.setItem('pwa-install-dismissed', Date.now().toString());
     setShowPrompt(false);
   };
+
+  console.log('[InstallPrompt] Render - showPrompt:', showPrompt, 'deferredPrompt:', !!deferredPrompt);
 
   if (!showPrompt) return null;
 

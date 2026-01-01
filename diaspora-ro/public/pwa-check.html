@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Installation Check</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .status.pass {
+      background: #d4edda;
+      color: #155724;
+    }
+    .status.fail {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    .status.warn {
+      background: #fff3cd;
+      color: #856404;
+    }
+    .icon {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    .log {
+      background: #000;
+      color: #0f0;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>PWA Installation Diagnostics</h1>
+
+  <div class="card">
+    <h2>Quick Status</h2>
+    <div id="status-container"></div>
+  </div>
+
+  <div class="card">
+    <h2>Actions</h2>
+    <button onclick="runFullCheck()">🔄 Run Full Check</button>
+    <button onclick="clearAllData()">🗑️ Clear All Data</button>
+    <button onclick="createProfile()">👤 Create Profile</button>
+    <button onclick="clearDismissed()">✅ Clear Dismissed</button>
+    <button onclick="testPrompt()">🧪 Test Prompt</button>
+  </div>
+
+  <div class="card">
+    <h2>LocalStorage Contents</h2>
+    <pre id="localstorage"></pre>
+  </div>
+
+  <div class="card">
+    <h2>Event Log</h2>
+    <div class="log" id="log"></div>
+  </div>
+
+  <script>
+    const logs = [];
+
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const logEntry = `[${timestamp}] ${message}`;
+      logs.unshift(logEntry);
+      document.getElementById('log').innerHTML = logs.join('\n');
+      console.log(logEntry);
+    }
+
+    function updateLocalStorage() {
+      const ls = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        ls[key] = localStorage.getItem(key);
+      }
+      document.getElementById('localstorage').textContent = JSON.stringify(ls, null, 2);
+    }
+
+    function checkStatus(condition, label, details = '') {
+      const container = document.getElementById('status-container');
+      const div = document.createElement('div');
+      div.className = `status ${condition ? 'pass' : 'fail'}`;
+      div.innerHTML = `
+        <span class="icon">${condition ? '✓' : '✗'}</span>
+        <div>
+          <strong>${label}</strong>
+          ${details ? `<div style="font-size: 12px; opacity: 0.8;">${details}</div>` : ''}
+        </div>
+      `;
+      container.appendChild(div);
+      return condition;
+    }
+
+    function runFullCheck() {
+      const container = document.getElementById('status-container');
+      container.innerHTML = '';
+      log('Running full check...');
+
+      // Check HTTPS
+      const isHttps = location.protocol === 'https:';
+      checkStatus(isHttps, 'HTTPS', location.protocol);
+      log(`HTTPS: ${isHttps}`);
+
+      // Check standalone
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+      checkStatus(!isStandalone, 'Not Already Installed', isStandalone ? 'App is already installed' : 'Not installed');
+      log(`Standalone: ${isStandalone}`);
+
+      // Check service worker
+      const hasSW = 'serviceWorker' in navigator;
+      checkStatus(hasSW, 'Service Worker Support', hasSW ? 'Supported' : 'Not supported');
+      log(`Service Worker support: ${hasSW}`);
+
+      if (hasSW) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          const hasRegistration = registrations.length > 0;
+          checkStatus(hasRegistration, 'Service Worker Registered',
+            hasRegistration ? `${registrations.length} registration(s)` : 'None registered');
+          log(`SW registrations: ${registrations.length}`);
+        });
+      }
+
+      // Check manifest
+      const manifestLink = document.querySelector('link[rel="manifest"]');
+      checkStatus(!!manifestLink, 'Manifest Link in HTML', manifestLink?.href || 'Not found');
+      log(`Manifest link: ${!!manifestLink}`);
+
+      if (manifestLink) {
+        fetch(manifestLink.href)
+          .then(r => r.json())
+          .then(manifest => {
+            checkStatus(!!manifest.name, 'Manifest Name', manifest.name);
+            checkStatus(!!manifest.short_name, 'Manifest Short Name', manifest.short_name);
+            checkStatus(!!manifest.start_url, 'Manifest Start URL', manifest.start_url);
+            checkStatus(manifest.display === 'standalone', 'Manifest Display Mode', manifest.display);
+            checkStatus(manifest.icons && manifest.icons.length > 0, 'Manifest Icons', `${manifest.icons?.length || 0} icons`);
+
+            const has192 = manifest.icons?.some(i => i.sizes === '192x192');
+            const has512 = manifest.icons?.some(i => i.sizes === '512x512');
+            checkStatus(has192 && has512, 'Required Icon Sizes', `192x192: ${has192}, 512x512: ${has512}`);
+
+            log(`Manifest loaded successfully`);
+          })
+          .catch(e => {
+            checkStatus(false, 'Manifest Load Failed', e.message);
+            log(`Manifest error: ${e.message}`);
+          });
+      }
+
+      // Check profile
+      const profile = localStorage.getItem('diasporaro-profile');
+      checkStatus(!!profile, 'Has Profile', profile ? 'Profile exists' : 'No profile');
+      log(`Profile: ${!!profile}`);
+
+      // Check dismissed
+      const dismissed = localStorage.getItem('pwa-install-dismissed');
+      if (dismissed) {
+        const daysSince = (Date.now() - parseInt(dismissed)) / (1000 * 60 * 60 * 24);
+        checkStatus(daysSince >= 30, 'Not Recently Dismissed', `${daysSince.toFixed(1)} days ago`);
+        log(`Dismissed ${daysSince.toFixed(1)} days ago`);
+      } else {
+        checkStatus(true, 'Never Dismissed', 'Good to show prompt');
+        log('Never dismissed');
+      }
+
+      updateLocalStorage();
+    }
+
+    function clearAllData() {
+      if (confirm('Clear all localStorage data?')) {
+        localStorage.clear();
+        log('All data cleared');
+        updateLocalStorage();
+        runFullCheck();
+      }
+    }
+
+    function createProfile() {
+      localStorage.setItem('diasporaro-profile', JSON.stringify({
+        test: true,
+        created: new Date().toISOString()
+      }));
+      log('Profile created');
+      updateLocalStorage();
+      runFullCheck();
+    }
+
+    function clearDismissed() {
+      localStorage.removeItem('pwa-install-dismissed');
+      log('Dismissed status cleared');
+      updateLocalStorage();
+      runFullCheck();
+    }
+
+    function testPrompt() {
+      log('Testing if beforeinstallprompt fires...');
+      log('This only works if Chrome wants to show the prompt');
+      log('Reload the page to retry if it already fired');
+
+      setTimeout(() => {
+        log('If no event fired in 3 seconds, Chrome is blocking it');
+        log('Possible reasons:');
+        log('- Already installed');
+        log('- Not enough user engagement');
+        log('- PWA criteria not met');
+      }, 3000);
+    }
+
+    // Listen for beforeinstallprompt
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      log('🎉 beforeinstallprompt EVENT FIRED!');
+      log('This means Chrome is ready to show install prompt');
+      e.preventDefault();
+      deferredPrompt = e;
+
+      const container = document.getElementById('status-container');
+      const div = document.createElement('div');
+      div.className = 'status pass';
+      div.innerHTML = `
+        <span class="icon">🎉</span>
+        <div>
+          <strong>Install Prompt Available!</strong>
+          <button onclick="installApp()" style="margin-left: 10px;">Install Now</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    window.installApp = async function() {
+      if (!deferredPrompt) {
+        log('No deferred prompt available');
+        return;
+      }
+
+      log('Showing install prompt...');
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      log(`User choice: ${outcome}`);
+      deferredPrompt = null;
+    };
+
+    // Listen for app installed
+    window.addEventListener('appinstalled', () => {
+      log('🎉 APP INSTALLED!');
+    });
+
+    // Check if already in standalone
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      log('⚠️ App is already running in standalone mode');
+    }
+
+    // Initial check
+    log('Page loaded');
+    runFullCheck();
+  </script>
+</body>
+</html>
