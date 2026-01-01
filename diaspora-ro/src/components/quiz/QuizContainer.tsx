@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { QuizAnswers, CountryCode, WorkSituation, Duration, FamilyStatus } from '@/lib/types';
 import { createProfileFromQuiz } from '@/lib/rules-engine';
@@ -21,6 +21,14 @@ export default function QuizContainer() {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<QuizAnswers>({});
   const [isProcessing, setIsProcessing] = useState(false);
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Scroll to top when step changes
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [step]);
 
   const updateAnswer = <K extends keyof QuizAnswers>(
     key: K,
@@ -83,7 +91,7 @@ export default function QuizContainer() {
       <Progress value={(step / TOTAL_STEPS) * 100} className="h-1" />
 
       {/* Content */}
-      <main className="flex-1 p-4 overflow-y-auto">
+      <main ref={mainRef} className="flex-1 p-4 overflow-y-auto">
         {step === 1 && (
           <CountrySelector
             selected={answers.residenceCountry}

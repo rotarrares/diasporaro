@@ -17,8 +17,10 @@ export default function DashboardHeader({ profile }: Props) {
 
   const getDurationLabel = (duration: string) => {
     switch (duration) {
-      case 'under_6m': return 'Sub 6 luni';
-      case '6m_to_2y': return '6 luni - 2 ani';
+      case 'under_3m': return 'Sub 3 luni';
+      case '3m_to_6m': return '3 - 6 luni';
+      case '6m_to_1y': return '6 luni - 1 an';
+      case '1y_to_2y': return '1 - 2 ani';
       case 'over_2y': return 'Peste 2 ani';
       case 'not_yet': return 'În planificare';
       default: return '';
