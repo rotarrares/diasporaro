@@ -7,13 +7,14 @@ import { createProfileFromQuiz } from '@/lib/rules-engine';
 import { useProfileStore } from '@/stores/profileStore';
 import CountrySelector from './CountrySelector';
 import SituationSelector from './SituationSelector';
+import SourceCountrySelector from './SourceCountrySelector';
 import DurationSelector from './DurationSelector';
 import FamilySelector from './FamilySelector';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { ArrowLeft } from 'lucide-react';
 
-const TOTAL_STEPS = 4;
+const BASE_STEPS = 4;
 
 export default function QuizContainer() {
   const router = useRouter();
@@ -22,6 +23,10 @@ export default function QuizContainer() {
   const [answers, setAnswers] = useState<QuizAnswers>({});
   const [isProcessing, setIsProcessing] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
+
+  // Determine if we need the source country step (for returnees to Romania)
+  const needsSourceCountry = answers.workSituation === 'returning' && answers.residenceCountry === 'RO';
+  const totalSteps = needsSourceCountry ? BASE_STEPS + 1 : BASE_STEPS;
 
   // Scroll to top when step changes
   useEffect(() => {
@@ -41,17 +46,24 @@ export default function QuizContainer() {
   };
 
   const canProceed = () => {
-    switch (step) {
-      case 1: return !!answers.residenceCountry;
-      case 2: return !!answers.workSituation;
-      case 3: return !!answers.duration;
-      case 4: return answers.familyStatus && answers.familyStatus.length > 0;
-      default: return false;
+    if (step === 1) return !!answers.residenceCountry;
+    if (step === 2) return !!answers.workSituation;
+
+    // If returning to RO, step 3 is source country selection
+    if (needsSourceCountry) {
+      if (step === 3) return !!answers.sourceCountry;
+      if (step === 4) return !!answers.duration;
+      if (step === 5) return answers.familyStatus && answers.familyStatus.length > 0;
+    } else {
+      if (step === 3) return !!answers.duration;
+      if (step === 4) return answers.familyStatus && answers.familyStatus.length > 0;
     }
+
+    return false;
   };
 
   const handleNext = async () => {
-    if (step < TOTAL_STEPS) {
+    if (step < totalSteps) {
       setStep(step + 1);
     } else {
       // Complete quiz
@@ -85,13 +97,13 @@ export default function QuizContainer() {
           <ArrowLeft className="w-5 h-5" />
         </button>
         <span className="text-sm text-gray-500">
-          Pas {step} din {TOTAL_STEPS}
+          Pas {step} din {totalSteps}
         </span>
         <div className="w-9" /> {/* Spacer */}
       </header>
 
       {/* Progress */}
-      <Progress value={(step / TOTAL_STEPS) * 100} className="h-1" />
+      <Progress value={(step / totalSteps) * 100} className="h-1" />
 
       {/* Content */}
       <main ref={mainRef} className="flex-1 p-4 overflow-y-auto">
@@ -105,15 +117,25 @@ export default function QuizContainer() {
           <SituationSelector
             selected={answers.workSituation}
             onSelect={(situation) => updateAnswer('workSituation', situation)}
+            residenceCountry={answers.residenceCountry}
           />
         )}
-        {step === 3 && (
+        {/* Conditional source country step for returnees to Romania */}
+        {needsSourceCountry && step === 3 && (
+          <SourceCountrySelector
+            selected={answers.sourceCountry}
+            onSelect={(country) => updateAnswer('sourceCountry', country)}
+          />
+        )}
+        {/* Duration step - step 3 for non-returnees, step 4 for returnees */}
+        {((needsSourceCountry && step === 4) || (!needsSourceCountry && step === 3)) && (
           <DurationSelector
             selected={answers.duration}
             onSelect={(duration) => updateAnswer('duration', duration)}
           />
         )}
-        {step === 4 && (
+        {/* Family step - step 4 for non-returnees, step 5 for returnees */}
+        {((needsSourceCountry && step === 5) || (!needsSourceCountry && step === 4)) && (
           <FamilySelector
             selected={answers.familyStatus || []}
             onSelect={(status) => updateAnswer('familyStatus', status)}
@@ -123,7 +145,7 @@ export default function QuizContainer() {
 
       {/* Footer */}
       <footer className="p-4 bg-white border-t safe-area-bottom">
-        {!canProceed() && step === 4 && (
+        {!canProceed() && step === totalSteps && (
           <p className="text-xs text-center text-amber-600 mb-2">
             Selectează cel puțin o opțiune pentru a continua
           </p>
@@ -135,7 +157,7 @@ export default function QuizContainer() {
           size="lg"
         >
           {isProcessing ? 'Se procesează...' :
-           step === TOTAL_STEPS ? 'Vezi rezultatele' : 'Continuă'}
+           step === totalSteps ? 'Vezi rezultatele' : 'Continuă'}
         </Button>
       </footer>
     </div>

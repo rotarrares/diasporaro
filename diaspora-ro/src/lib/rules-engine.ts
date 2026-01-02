@@ -32,14 +32,20 @@ export function createProfileFromQuiz(answers: QuizAnswers): Profile {
     workSituation,
     duration,
     familyStatus,
+    sourceCountry,
   } = answers;
 
   if (!residenceCountry || !workSituation || !duration || !familyStatus) {
     throw new Error('Incomplete quiz answers');
   }
 
+  // Validate sourceCountry for returning situation
+  if (workSituation === 'returning' && residenceCountry === 'RO' && !sourceCountry) {
+    throw new Error('Source country is required for returning migrants');
+  }
+
   // Determine destination country (where they work)
-  const destinationCountry = determineDestinationCountry(residenceCountry, workSituation);
+  const destinationCountry = determineDestinationCountry(residenceCountry, workSituation, sourceCountry);
 
   // Calculate all applicable rules
   const applicableRules = calculateRules({
@@ -61,6 +67,7 @@ export function createProfileFromQuiz(answers: QuizAnswers): Profile {
     duration,
     familyStatus,
     destinationCountry,
+    sourceCountry,
     applicableRules,
     rulesVersion: INFO_VERSION,
     rulesLastUpdated: INFO_LAST_UPDATED,
@@ -73,11 +80,13 @@ export function createProfileFromQuiz(answers: QuizAnswers): Profile {
 
 function determineDestinationCountry(
   residenceCountry: CountryCode,
-  workSituation: WorkSituation
+  workSituation: WorkSituation,
+  sourceCountry?: CountryCode
 ): CountryCode {
-  // For returning migrants, destination is Romania
+  // For returning migrants, use sourceCountry for content matching
+  // This allows showing country-specific returning content (e.g., de-returning.mdx)
   if (workSituation === 'returning') {
-    return 'RO';
+    return sourceCountry || 'RO';  // Fallback to RO for backward compatibility
   }
 
   // For others living abroad, that's their destination

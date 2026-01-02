@@ -1,4 +1,4 @@
-import { WorkSituation, WORK_SITUATIONS } from '@/lib/types';
+import { WorkSituation, WORK_SITUATIONS, CountryCode } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info } from 'lucide-react';
@@ -6,10 +6,21 @@ import { Info } from 'lucide-react';
 interface Props {
   selected?: WorkSituation;
   onSelect: (situation: WorkSituation) => void;
+  residenceCountry?: CountryCode;
 }
 
-export default function SituationSelector({ selected, onSelect }: Props) {
-  const situations = Object.values(WORK_SITUATIONS);
+export default function SituationSelector({ selected, onSelect, residenceCountry }: Props) {
+  // Filter situations based on residence country
+  const allSituations = Object.values(WORK_SITUATIONS);
+  const situations = allSituations.filter(situation => {
+    // If living in Romania, exclude posted_worker and remote_worker
+    // (posted workers are sent FROM Romania TO another country, not living in Romania)
+    // (remote workers work for RO companies while living abroad)
+    if (residenceCountry === 'RO') {
+      return situation.id !== 'posted_worker' && situation.id !== 'remote_worker';
+    }
+    return true;
+  });
 
   return (
     <TooltipProvider>

@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ro">
+    <html lang="ro" suppressHydrationWarning>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <PWAInit />
         {children}

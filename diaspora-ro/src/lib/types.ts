@@ -105,6 +105,7 @@ export interface Profile {
   duration: Duration;
   familyStatus: FamilyStatus[];
   destinationCountry: CountryCode;
+  sourceCountry?: CountryCode;  // For returning situation - where they worked abroad
   applicableRules: ApplicableRules;
   rulesVersion?: string;      // Version of rules engine used to calculate applicableRules
   rulesLastUpdated?: string;  // ISO date when rules were last updated
@@ -115,6 +116,7 @@ export interface QuizAnswers {
   workSituation?: WorkSituation;
   duration?: Duration;
   familyStatus?: FamilyStatus[];
+  sourceCountry?: CountryCode;  // For returning situation - where they worked abroad
 }
 
 // ============================================
